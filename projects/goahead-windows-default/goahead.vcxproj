@@ -135,7 +135,7 @@ cd projects\goahead-windows-default</Command>
 
     <ItemGroup>
       <ProjectReference Include="libgo.vcxproj">
-      <Project>9ed725e0-59f2-44d3-8fbf-5f7f1215f1da</Project>
+      <Project>81bb21cb-36f6-48a9-baac-3d9850cffcd5</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       </ProjectReference>
     </ItemGroup>
