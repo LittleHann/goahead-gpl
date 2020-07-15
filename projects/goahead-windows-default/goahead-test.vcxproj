@@ -119,7 +119,7 @@
 
     <ItemGroup>
       <ProjectReference Include="libgo.vcxproj">
-      <Project>81bb21cb-36f6-48a9-baac-3d9850cffcd5</Project>
+      <Project>e4aefffc-52de-4605-aba8-ea1a205a5b53</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       </ProjectReference>
     </ItemGroup>

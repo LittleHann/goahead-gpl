@@ -1,0 +1,47 @@
+/*
+    doc.me -- MakeMe file for GoAhead documentation
+ */
+
+Me.load({
+    targets: {
+        api: {
+            action: `
+                apidoc('api/goahead.dox', '${SRC}/goahead.h', 'GoAhead')
+                apiLayout('api/goahead.html', 'dist/ref/api/goahead.html')
+
+                let base = me.dir.paks.join('*/doc')
+                let files = Path().files(base.join('api/*.html'))
+                for each (src in files) {
+                    let dest = src.trimComponents(base.components.length)
+                    apiLayout(src, Path('dist/ref').join(dest))
+                }
+            `
+        },
+        validate: {
+            depends: [ 'gen-doc' ],
+            action: `
+                for each (f in Path('dist').files('**/*.html')) {
+                    let data = f.readString()
+                    data = data.replace('700|Open', '').
+                        replace(/goahead.download.html/g, 'download/goahead.html').
+                        replace(/pak.download.html/g, 'download/pak.html').
+                        replace(/developers.contributors.html/g, 'scripts/contributors.esp').
+                        replace(/nowrap="nowrap"/g, '').
+                        replace(/https:..embedthis.com.goahead.licensing.html/g, 'https://embedthis.com/').
+                        replace(/https:..embedthis.com.makeme.doc.guide.me.source.building.htm/g, 'https://embedthis.com/').
+                        replace(/https:..embedthis.com.makeme.doc.source.building.htm/g, 'https://embedthis.com/').
+                        replace(/https:..embedthis.com.makeme.doc.source/g, 'https://embedthis.com/').
+                        replace(/https:..embedthis.com.developers./g, 'https://embedthis.com/').
+                        replace(/nowrap/g, '')
+                    trace('Patch', f)
+                    f.write(data)
+                }
+                for each (f in Path('dist/man').files('*.html')) {
+                    f.write(f.readString().toLowerCase())
+                }
+                trace('Listen', 'expansive --nowatch')
+                Cmd.run('expansive --nowatch')
+            `
+        },
+    },
+})

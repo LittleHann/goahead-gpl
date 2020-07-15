@@ -1,0 +1,35 @@
+{
+    control: {
+        "?listen": '127.0.0.1:4000'
+    },
+    debug: {
+        services: {
+            "?gzip": false,
+            "?html": false,
+            "?js": {
+                "?minify": false,
+                "?usemin": true,
+                "?usemap": true
+            }
+        }
+    },
+    release: {
+        services: {
+            "css": {
+                "?minify": true,
+                "?usemin": true,
+                "?usemap": false
+            },
+            "?gzip": true,
+            "?html": {
+                options: '--remove-comments --conservative-collapse --prevent-attributes-escaping --remove-empty-attributes --remove-optional-tags',
+            },
+            "js": {
+                "?minify": true,
+                "?usemin": true,
+                "?usemap": false
+            },
+            "?reload": false
+        }
+    }
+}
